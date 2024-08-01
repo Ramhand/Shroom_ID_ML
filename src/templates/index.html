@@ -5,11 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         window.addEventListener("load", function() {
-        		setTimeout(function () {
+            setTimeout(function() {
                 $(".freaky").each(function() {
                     var text = $(this).text();
                     var html = '';
-                                   var index = 0;
+                    var index = 0;
 
                     while (index < text.length) {
                         var randomLen = Math.floor(Math.random() * 3) + 1;
@@ -18,28 +18,33 @@
                         index = end;
                     }
                     $(this).html(html);
+
                     $(this).find('span').each(function(index) {
                         var r1 = Math.floor(Math.random() * 12) + 1;
                         var r2 = Math.floor(Math.random() * 5) + 1;
-                        var arr = ["#a4e5e5", "#f00fd2", "#0ff00f", "#f0d90f"]
-                        var arr2 = ["rgba(164, 229, 229, ", "rgba(240, 15, 210, ", "rgba(15, 240, 15, ", "rgba(240, 217, 15, "]
-                        var r3 = Math.floor(Math.random() * 4)
-                        var r4 = Math.floor(Math.random() * 4)
+                        var arr = ["#a4e5e5", "#f00fd2", "#0ff00f", "#f0d90f"];
+                        var arr2 = ["rgba(164, 229, 229, ", "rgba(240, 15, 210, ", "rgba(15, 240, 15, ", "rgba(240, 217, 15, "];
+                        var r3 = Math.floor(Math.random() * 4);
+                        var r4 = Math.floor(Math.random() * 4);
                         var randomDelay = Math.floor(Math.random() * 8) + 1;
-                        var count = 0
-                        $(this).delay(randomDelay * 3000).queue(function() {
+                        var count = 0;
+
+                        $(this).delay(randomDelay * 2500).queue(function(next) {
                             count++;
                             $(this).css('font-family', 'fantasy');
-                            $(".freaky").css('text-shadow', `${r1*r2}px ${r1*r2}px ${r1*r2*2}px ${arr[r3]}`)
-                            $(".freaky").css('box-shadow', `${r1*r2}px ${r1*r2}px ${r1*r2*3}px ${arr[r4]}`)
-                            $(".freaky").css('background-color', `${arr2[r4]}${0.15*count})`)
-                            $(".freaky").css('border-radius', '7px')
-                            $("form").css('background-color', `${arr2[r4]}${0.15*count})`)
-                            $(this).dequeue();
+                            $(".freaky").css('text-shadow', `${count*r1}px ${count*r1}px ${count*r1*2}px ${arr2[r3]}${0.25*count})`);
+                            $(".freaky").css('box-shadow', `${count*r1}px ${count*r1}px ${count*r1*3}px ${arr2[r4]}${0.5*count})`);
+                            $(this).css('background-color', `${arr2[r4]}${0.15*count})`);
+                            $(this).css('border-radius', '7px');
+
+                            $(this).parent().css('background-color', `${arr2[r4]}${0.15*count})`);
+                            $("form").css('background-color', `${arr2[r4]}${0.15*count})`);
+                            $("form").css('box-shadow', `${count*r1}px ${count*r1}px ${count*r1*3}px ${arr2[r4]}${0.5*count})`);
+														$(this).dequeue();
+                        });
                     });
                 });
-            });
-            }, 3000);
+            }, 2000);
         });
     </script>
     <style>
@@ -66,6 +71,7 @@
         }
         .freaky {
           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          margin: 30px
         }
         body {
             font-family: Arial, sans-serif;
@@ -75,16 +81,18 @@
         form {
             background-color: #806d5b;
             padding: 20px;
+            margin: 25px;
             border-radius: 8px;
             text-align: center;
         }
         label {
-            padding: 10px
+            padding: 10px;
+            margin: 25px;
         }
         select {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 25px 0;
             border-radius: 4px;
             text-align: center;
             color: #0c7a43;
@@ -93,7 +101,8 @@
         input[type="submit"] {
             background-color: #064e10;
             color: #fff;
-            padding: 10px 15px;
+            padding: 20px 25px;
+            margin: 25px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -112,8 +121,8 @@
         </style>
 </head>
 <body>
-    <h1 class="freaky"><span class="freaky">Don't die in the woods</span></h1>
-    <h2 class="freaky"><span class="freaky">A few important questions:</span></h2>
+    <h1><span class="freaky">Don't die in the woods</span></h1>
+    <h2><span class="freaky">A few important questions:</span></h2>
 
     <form action = "/" method="post">
         <label for="odor" class="freaky">What does it smell like?</label>
