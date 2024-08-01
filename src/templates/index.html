@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mushroom Identification</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        window.addEventListener("load", function() {
+        		setTimeout(function () {
+                $(".freaky").each(function() {
+                    var text = $(this).text();
+                    var html = '';
+                                   var index = 0;
+
+                    while (index < text.length) {
+                        var randomLen = Math.floor(Math.random() * 3) + 1;
+                        var end = Math.min(index + randomLen, text.length);
+                        html += '<span>' + text.substring(index, end) + '</span>';
+                        index = end;
+                    }
+                    $(this).html(html);
+                    $(this).find('span').each(function(index) {
+                        var randomDelay = Math.floor(Math.random() * 12) + 1;
+                        $(this).delay(randomDelay * 5000).queue(function() {
+                            $(this).css('font-family', 'fantasy');
+                            $(this).dequeue();
+                    });
+                });
+            });
+            }, 30000);
+        });
+    </script>
+    <style>
+            h1 {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 60px;
+            color: #064e10;
+            text-align: center;
+        }
+        h1 span {
+            background-color: #806d5b;
+            border-radius: 7px;
+            box-shadow: 5px 5px 10px #a4e5e5;
+        }
+        h2 {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 30px;
+            color: #064e10;
+            text-align: center;
+        }
+        h2 span {
+            background-color: #806d5b;
+            border-radius: 7px;
+            box-shadow: 5px 5px 10px #a4e5e5
+        }
+        freaky {
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #749476;
+        }
+        form {
+            background-color: #806d5b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 20px 20px 40px #a4e5e5;
+            text-align: center;
+            text-shadow: 5px 5px 10px #a4e5e5
+        }
+        label {
+            padding: 10px
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+            color: #0c7a43
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #064e10;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self: center;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+        h3 {
+            margin-top: 20px;
+            background-color: #806d5b;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 5px 5px 10px #a4e5e5
+        }
+        </style>
+</head>
+<body>
+    <h1 class="freaky"><span>Don't die in the woods</span></h1>
+    <h2 class="freaky"><span>A few important questions:</span></h2>
+
+    <form action = "/" method="post">
+        <label for="odor" class="freaky">What does it smell like?</label>
+            <select id="odor_" name="odor_">
+                <option value="2">Almonds</option>
+                <option value="3">Anise/Licorice</option>
+                <option value="6">Creosote/Mothballs</option>
+                <option value="7">Fishy</option>
+                <option value="5">Foul</option>
+                <option value="9">Musty</option>
+                <option value="4">No odor</option>
+                <option value="1">Pungent</option>
+                <option value="8">Spicy</option>
+            </select><br>
+        <label for="gill-attachment" class="freaky">Are the gills under the cap free or attached?</label>
+            <select id="gill-attachment_" name="gill-attachment_">
+                <option value="1">Free</option>
+                <option value="2">Attached</option>
+            </select><br>
+        <label for="gill-size" class="freaky">Are the gills under the cap more broad or narrow?</label>
+            <select id="gill-size_" name="gill-size_">
+                <option value="2">Broad</option>
+                <option value="1">Narrow</option>
+            </select><br>
+        <label for="stalk-surface-below-ring" class="freaky">What is the texture of the stalk below the ring?</label>
+            <select id="stalk-surface-below-ring_" name="stalk-surface-below-ring_">
+                <option value="2">Fibrous</option>
+                <option value="3">Scaly</option>
+                <option value="4">Silky</option>
+                <option value="1">Smooth</option>
+            </select><br>
+        <label for="stalk-color-above-ring" class="freaky">What is the color of the stalk -above- the ring?</label>
+            <select id="stalk-color-above-ring_" name="stalk-color-above-ring_">
+                <option value="4">Brown</option>
+                <option value="5">Buff</option>
+                <option value="8">Cinnamon</option>
+                <option value="2">Gray</option>
+                <option value="7">Orange</option>
+                <option value="3">Pink</option>
+                <option value="6">Red</option>
+                <option value="1">White</option>
+                <option value="9">Yellow</option>
+            </select><br>
+        <label for="spore-print-color" class="freaky">What color is the spore print you should have started making 24 hours ago?</label>
+            <select id="spore-print-color_" name="spore-print-color_">
+                <option value="1">Black</option>
+                <option value="2">Brown</option>
+                <option value="9">Buff</option>
+                <option value="4">Chocolate</option>
+                <option value="6">Green</option>
+                <option value="7">Orange</option>
+                <option value="3">Purple</option>
+                <option value="5">White</option>
+                <option value="8">Yellow</option>
+            </select><br>
+        <label for="population" class="freaky">How would you describe the population of this mushroom where you found it?</label>
+            <select id="population_" name="population_">
+                <option value="3">Abundant</option>
+                <option value="6">Clustered</option>
+                <option value="2">Numerous</option>
+                <option value="1">Scattered</option>
+                <option value="4">Several</option>
+                <option value="5">Solitary</option>
+            </select><br>
+        <input type="submit" value="Should I?" class="freaky">
+    </form>
+
+    {% if prediction != None %}
+        <h3 class="freaky">You should definitely {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
