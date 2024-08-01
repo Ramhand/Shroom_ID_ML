@@ -19,14 +19,27 @@
                     }
                     $(this).html(html);
                     $(this).find('span').each(function(index) {
-                        var randomDelay = Math.floor(Math.random() * 12) + 1;
-                        $(this).delay(randomDelay * 5000).queue(function() {
+                        var r1 = Math.floor(Math.random() * 12) + 1;
+                        var r2 = Math.floor(Math.random() * 5) + 1;
+                        var arr = ["#a4e5e5", "#f00fd2", "#0ff00f", "#f0d90f"]
+                        var arr2 = ["rgba(164, 229, 229, ", "rgba(240, 15, 210, ", "rgba(15, 240, 15, ", "rgba(240, 217, 15, "]
+                        var r3 = Math.floor(Math.random() * 4)
+                        var r4 = Math.floor(Math.random() * 4)
+                        var randomDelay = Math.floor(Math.random() * 8) + 1;
+                        var count = 0
+                        $(this).delay(randomDelay * 3000).queue(function() {
+                            count++;
                             $(this).css('font-family', 'fantasy');
+                            $(".freaky").css('text-shadow', `${r1*r2}px ${r1*r2}px ${r1*r2*2}px ${arr[r3]}`)
+                            $(".freaky").css('box-shadow', `${r1*r2}px ${r1*r2}px ${r1*r2*3}px ${arr[r4]}`)
+                            $(".freaky").css('background-color', `${arr2[r4]}${0.15*count})`)
+                            $(".freaky").css('border-radius', '7px')
+                            $("form").css('background-color', `${arr2[r4]}${0.15*count})`)
                             $(this).dequeue();
                     });
                 });
             });
-            }, 30000);
+            }, 3000);
         });
     </script>
     <style>
@@ -39,7 +52,6 @@
         h1 span {
             background-color: #806d5b;
             border-radius: 7px;
-            box-shadow: 5px 5px 10px #a4e5e5;
         }
         h2 {
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -50,9 +62,9 @@
         h2 span {
             background-color: #806d5b;
             border-radius: 7px;
-            box-shadow: 5px 5px 10px #a4e5e5
+            color: #f0d90f
         }
-        freaky {
+        .freaky {
           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         body {
@@ -64,9 +76,7 @@
             background-color: #806d5b;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 20px 20px 40px #a4e5e5;
             text-align: center;
-            text-shadow: 5px 5px 10px #a4e5e5
         }
         label {
             padding: 10px
@@ -98,13 +108,12 @@
             padding: 10px;
             border-radius: 4px;
             text-align: center;
-            box-shadow: 5px 5px 10px #a4e5e5
         }
         </style>
 </head>
 <body>
-    <h1 class="freaky"><span>Don't die in the woods</span></h1>
-    <h2 class="freaky"><span>A few important questions:</span></h2>
+    <h1 class="freaky"><span class="freaky">Don't die in the woods</span></h1>
+    <h2 class="freaky"><span class="freaky">A few important questions:</span></h2>
 
     <form action = "/" method="post">
         <label for="odor" class="freaky">What does it smell like?</label>
