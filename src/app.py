@@ -10,6 +10,7 @@ columns = ['odor', 'gill-attachment', 'gill-size', 'stalk-surface-below-ring', '
            'spore-print-color', 'population']
 
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
